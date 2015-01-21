@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}
+	Inicio
+{% endblock %}
+{% block content %}
+	<form method="post">
+		{% csrf_token %}
+		{% if user.is_authenticated %}
+			Bienvenido <strong>{{ user.username|capfirst }}</strong>
+			<a class="btn btn-success" href="/cerrar/">Salir</a>
+		{% else %}
+		<label for="username">Usuario</label>
+		<input type="text" id="username" name="username" placeholder="Usuario">
+		<label for="password">Password</label>
+		<input type="password" id="password" name="password" placeholder="Password">
+		<input class="btn btn-primary" type="submit" value="Enviar">
+		<a class="btn btn-success" href="/registrarse/">Registrar</a>
+	</form>
+{% endif %}
+{% endblock %}
